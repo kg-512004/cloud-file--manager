@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cloud File Manager</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>☁ Cloud File & Notes Manager</h1>
+
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <textarea name="description" placeholder="Add notes..." required></textarea>
+        <button type="submit">Upload</button>
+    </form>
+
+    <h2>Your Files</h2>
+
+    <div class="files">
+        {% for file in files %}
+        <div class="card">
+            <h3>{{ file.filename }}</h3>
+            <p>{{ file.description }}</p>
+            <a href="/download/{{ file.blob_name }}">Download</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>
